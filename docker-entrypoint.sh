@@ -128,11 +128,11 @@ if [ -z ${MYSQL_TARGET_PORT} ]; then
 fi
 
 # Retention
-if [ -z ${MYSQL_DUMP_RETENTION} ]; then
+if [ -z ${MYSQL_TRANSFER_RETENTION} ]; then
     cat >&1 <<-EOT
-		INFO: MYSQL_DUMP_RETENTION not set, default 1d
+		INFO: MYSQL_TRANSFER_RETENTION not set, default 1d
 	EOT
-    MYSQL_DUMP_RETENTION=1d
+    MYSQL_TRANSFER_RETENTION=1d
 fi
 
 cat >&1 <<-EOT
@@ -142,7 +142,7 @@ Successfully checked requirements!
 ----
 EOT
 
-dump ()
+transfer ()
 {
 cat >&1 <<-EOT
 
@@ -163,6 +163,6 @@ EOT
 }
 
 while true; do
-    dump
-    sleep ${MYSQL_DUMP_RETENTION}
+    transfer
+    sleep ${MYSQL_TRANSFER_RETENTION}
 done
