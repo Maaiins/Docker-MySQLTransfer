@@ -17,4 +17,5 @@ To run it:
           -e "MYSQL_TARGET_PORT=3306" \ # Only needed if port is not 3306, will be set to 3306 if environment variable is not set
           -e "MYSQL_TARGET_USER=user" \
           -e "MYSQL_TARGET_PASSWORD=password" \
+          -e "MYSQL_DUMP_RETENTION=1d" \ Only needed if you like to shedule dump different to a day
           maaiins/mysql-transfer

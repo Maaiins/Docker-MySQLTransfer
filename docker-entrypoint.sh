@@ -127,11 +127,24 @@ if [ -z ${MYSQL_TARGET_PORT} ]; then
     MYSQL_TARGET_PORT=3306
 fi
 
+# Retention
+if [ -z ${MYSQL_DUMP_RETENTION} ]; then
+    cat >&1 <<-EOT
+		INFO: MYSQL_DUMP_RETENTION not set, default 1d
+	EOT
+    MYSQL_DUMP_RETENTION=1d
+fi
+
 cat >&1 <<-EOT
 
 ----
 Successfully checked requirements!
 ----
+EOT
+
+dump ()
+{
+cat >&1 <<-EOT
 
 ----
 Begin transaction $(date)
@@ -139,11 +152,17 @@ Begin transaction $(date)
 
 EOT
 
-mysqldump -v --user="${MYSQL_SOURCE_USER}" --password="${MYSQL_SOURCE_PASSWORD}" --host="${MYSQL_SOURCE_ADDRESS}" --port="${MYSQL_SOURCE_PORT}" --routines --triggers "${MYSQL_SOURCE_DATABASE}" | sed -e 's/DEFINER=[^*]*\*/\*/' | mysql -v --user="${MYSQL_TARGET_USER}" --password="${MYSQL_TARGET_PASSWORD}" --host="${MYSQL_TARGET_ADDRESS}" --port="${MYSQL_TARGET_PORT}" "${MYSQL_TARGET_DATABASE}"
+    mysqldump -v --user="${MYSQL_SOURCE_USER}" --password="${MYSQL_SOURCE_PASSWORD}" --host="${MYSQL_SOURCE_ADDRESS}" --port="${MYSQL_SOURCE_PORT}" --routines --triggers "${MYSQL_SOURCE_DATABASE}" | sed -e 's/DEFINER=[^*]*\*/\*/' | mysql -v --user="${MYSQL_TARGET_USER}" --password="${MYSQL_TARGET_PASSWORD}" --host="${MYSQL_TARGET_ADDRESS}" --port="${MYSQL_TARGET_PORT}" "${MYSQL_TARGET_DATABASE}"
 
 cat >&1 <<-EOT
 
-----
-End transaction $(date)
-----
+    ----
+    End transaction $(date)
+    ----
 EOT
+}
+
+while true; do
+    dump
+    sleep ${MYSQL_DUMP_RETENTION}
+done
