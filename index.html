@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Docker-mysqltransfer : ">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Docker-mysqltransfer</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/Maaiins/Docker-MySQLTransfer">View on GitHub</a>
+
+          <h1 id="project_title">Docker-mysqltransfer</h1>
+          <h2 id="project_tagline"></h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/Maaiins/Docker-MySQLTransfer/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/Maaiins/Docker-MySQLTransfer/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <p><a href="https://github.com/Maaiins/Docker-MYSQLTransfer/blob/master/LICENSE" title="Project Licence"><img src="https://img.shields.io/badge/license-AGPL%20v3-blue.svg" alt=""></a> <a href="https://hub.docker.com/r/maaiins/mysql-transfer" title="Project DockerHub"><img src="https://img.shields.io/docker/stars/maaiins/mysql-transfer.svg" alt=""></a> <a href="https://hub.docker.com/r/maaiins/mysql-transfer" title="Project DockerHub"><img src="https://img.shields.io/docker/pulls/maaiins/mysql-transfer.svg" alt=""></a></p>
+
+<h1>
+<a id="docker-mysqltransfer" class="anchor" href="#docker-mysqltransfer" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Docker-MySQLTransfer</h1>
+
+<h3>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h3>
+
+<p>To run it:</p>
+
+<pre><code>$ docker run \
+      -e "MYSQL_SOURCE_ADDRESS=foo.bar" \
+      -e "MYSQL_TARGET_DATABASE=foo" \
+      -e "MYSQL_SOURCE_PORT=3306" \ # Only needed if port is not 3306, will be set to 3306 if environment variable is not set
+      -e "MYSQL_SOURCE_USER=user" \
+      -e "MYSQL_SOURCE_PASSWORD=password" \
+      -e "MYSQL_TARGET_ADDRESS=foo.bar" \
+      -e "MYSQL_TARGET_DATABASE=bar" \ # Should not exist
+      -e "MYSQL_TARGET_PORT=3306" \ # Only needed if port is not 3306, will be set to 3306 if environment variable is not set
+      -e "MYSQL_TARGET_USER=user" \
+      -e "MYSQL_TARGET_PASSWORD=password" \
+      maaiins/mysql-transfer
+</code></pre>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Docker-mysqltransfer maintained by <a href="https://github.com/Maaiins">Maaiins</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
