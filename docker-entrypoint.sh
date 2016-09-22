@@ -164,5 +164,8 @@ EOT
 
 while true; do
     transfer
+    if [ "${MYSQL_TRANSFER_RETENTION}" = false ] ; then
+        break
+    fi
     sleep ${MYSQL_TRANSFER_RETENTION}
 done
