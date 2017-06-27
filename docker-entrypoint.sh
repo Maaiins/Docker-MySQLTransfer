@@ -85,7 +85,7 @@ else
 	stdout "INFO: no script for execution on source shared"
 	# ----
 fi
-
+ls -a /sql
 if [ -e /sql/target.sql ]; then
     # ----
 	stdout "Execute script on source"
