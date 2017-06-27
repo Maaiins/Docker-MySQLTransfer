@@ -72,7 +72,7 @@ stdout "Successfully checked requirements!"
 stdout "Begin transaction $(date)"
 # ----
 
-mysqldump -v --user="${MYSQL_SOURCE_USER}" --password="${MYSQL_SOURCE_PASSWORD}" --host="${MYSQL_SOURCE_ADDRESS}" --port="${MYSQL_SOURCE_PORT}" --routines --triggers "${MYSQL_SOURCE_DATABASE}" | sed -e 's/DEFINER=[^*]*\*/\*/' | mysql -v --user="${MYSQL_TARGET_USER}" --password="${MYSQL_TARGET_PASSWORD}" --host="${MYSQL_TARGET_ADDRESS}" --port="${MYSQL_TARGET_PORT}" "${MYSQL_TARGET_DATABASE}"
+# mysqldump -v --user="${MYSQL_SOURCE_USER}" --password="${MYSQL_SOURCE_PASSWORD}" --host="${MYSQL_SOURCE_ADDRESS}" --port="${MYSQL_SOURCE_PORT}" --routines --triggers "${MYSQL_SOURCE_DATABASE}" | sed -e 's/DEFINER=[^*]*\*/\*/' | mysql -v --user="${MYSQL_TARGET_USER}" --password="${MYSQL_TARGET_PASSWORD}" --host="${MYSQL_TARGET_ADDRESS}" --port="${MYSQL_TARGET_PORT}" "${MYSQL_TARGET_DATABASE}"
 
 if [ -e /sql/source.sql ]; then
     # ----
@@ -85,7 +85,7 @@ else
 	stdout "INFO: no script for execution on source shared"
 	# ----
 fi
-ls -a /sql
+ls -a /sql >&1
 if [ -e /sql/target.sql ]; then
     # ----
 	stdout "Execute script on source"
