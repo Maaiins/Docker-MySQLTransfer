@@ -50,16 +50,16 @@ exists ${MYSQL_TARGET_DATABASE} "MYSQL_TARGET_DATABASE"
 
 if [ -z ${MYSQL_SOURCE_PORT} ]; then
     # ----
-	stdout "INFO: MYSQL_SOURCE_PORT not set, default 3306"
-	# ----
+    stdout "INFO: MYSQL_SOURCE_PORT not set, default 3306"
+    # ----
 
     MYSQL_SOURCE_PORT=3306
 fi
 
 if [ -z ${MYSQL_TARGET_PORT} ]; then
     # ----
-	stdout "INFO: MYSQL_TARGET_PORT not set, default 3306"
-	# ----
+    stdout "INFO: MYSQL_TARGET_PORT not set, default 3306"
+    # ----
 
     MYSQL_TARGET_PORT=3306
 fi
@@ -79,26 +79,26 @@ ls -a >&1
 
 if [ -e /sql/source.sql ]; then
     # ----
-	stdout "Execute script on source"
-	# ----
+    stdout "Execute script on source"
+    # ----
 
     mysql -v --user="${MYSQL_SOURCE_USER}" --password="${MYSQL_SOURCE_PASSWORD}" --host="${MYSQL_SOURCE_ADDRESS}" --port="${MYSQL_SOURCE_PORT}" "${MYSQL_SOURCE_DATABASE}" < /sql/source.sql
 else
     # ----
-	stdout "INFO: no script for execution on source shared"
-	# ----
+    stdout "INFO: no script for execution on source shared"
+    # ----
 fi
 
 if [ -e /sql/target.sql ]; then
     # ----
-	stdout "Execute script on target"
-	# ----
+    stdout "Execute script on target"
+    # ----
 
     mysql -v --user="${MYSQL_TARGET_USER}" --password="${MYSQL_TARGET_PASSWORD}" --host="${MYSQL_TARGET_ADDRESS}" --port="${MYSQL_TARGET_PORT}" "${MYSQL_TARGET_DATABASE}" < /sql/target.sql
 else
     # ----
-	stdout "INFO: no script for execution on target shared"
-	# ----
+    stdout "INFO: no script for execution on target shared"
+    # ----
 fi
 
 # ----
