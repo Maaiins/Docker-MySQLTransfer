@@ -77,7 +77,7 @@ stdout "Begin transaction $(date)"
 cd /sql
 ls -a >&1
 
-if [ -e "/sql/source.sql" ]; then
+if [ -e /sql/source.sql ]; then
     # ----
 	stdout "Execute script on source"
 	# ----
@@ -89,7 +89,7 @@ else
 	# ----
 fi
 
-if [ -e "/sql/target.sql" ]; then
+if [ -e /sql/target.sql ]; then
     # ----
 	stdout "Execute script on source"
 	# ----
